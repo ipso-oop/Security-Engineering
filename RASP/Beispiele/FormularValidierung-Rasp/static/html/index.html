@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular mit Grid Layout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <form class="form-container" id="contactForm" action="/" method="POST"">
+        <label for="firstname">Vorname:</label>
+        <input type="text" id="firstname" name="firstname">
+        <span class="error" id="firstnameError"></span>
+
+        <label for="lastname">Nachname:</label>
+        <input type="text" id="lastname" name="lastname">
+        <span class="error" id="lastnameError"></span>
+
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+
+        <label for="phone">Telefonnummer:</label>
+        <input type="text" id="phone" name="phone">
+        <span class="error" id="phoneError"></span>
+
+        <label for="message">Nachricht:</label>
+        <textarea id="message" name="message"></textarea>
+        <span class="error" id="messageError"></span>
+
+        <button type="submit">Absenden</button>
+    </form>
+	
+	
+</body>
+</html>

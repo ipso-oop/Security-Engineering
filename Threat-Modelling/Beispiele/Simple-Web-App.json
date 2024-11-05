@@ -1,0 +1,608 @@
+{
+  "summary": {
+    "title": "Web Application Threat Model",
+    "owner": "Security Team",
+    "description": "Bedrohungsmodell für eine typische Webanwendung unter Verwendung des OWASP Threat Dragon Modells.",
+    "id": 1
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Security Analyst 1"
+      },
+      {
+        "name": "Developer 1"
+      }
+    ],
+    "diagrams": [
+      {
+        "cells": [
+          {
+            "position": {
+              "x": 788.9999999999991,
+              "y": 64.00000000000244
+            },
+            "size": {
+              "width": 440,
+              "height": 610
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "ea34ac31-73a7-47d3-aad2-7f6851deda3e",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 899.9999999999993,
+              "y": 550
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Datenbank"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 4,
+            "id": "5",
+            "data": {
+              "name": "Datenbank",
+              "description": "",
+              "type": "tm.Store",
+              "isTrustBoundary": false,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "High",
+                  "mitigation": "Eingabevalidierung und Verwendung vorbereiteter SQL-Anweisungen.",
+                  "description": "Manipulation von Datenbankinhalten durch SQL-Injection.",
+                  "title": "Tampering",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "id": "T6"
+                },
+                {
+                  "status": "Open",
+                  "severity": "High",
+                  "mitigation": "Verwendung von Verschlüsselung sowohl für ruhende Daten (data at rest) als auch für Datenübertragung.",
+                  "description": "Datenleck durch unzureichende Verschlüsselung der gespeicherten Daten.",
+                  "title": "Information Disclosure",
+                  "type": "Information Disclosure",
+                  "modelType": "STRIDE",
+                  "id": "T7"
+                }
+              ],
+              "hasOpenThreats": true,
+              "outOfScope": null,
+              "isEncrypted": null,
+              "isALog": null,
+              "isSigned": null
+            }
+          },
+          {
+            "position": {
+              "x": 929.9999999999993,
+              "y": 370
+            },
+            "size": {
+              "width": 100,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Backend"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 7,
+            "id": "ede635ab-82bd-4408-a0c5-c130f99c5a87",
+            "data": {
+              "type": "tm.Process",
+              "name": "Backend",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "53ef0170-8eaf-4632-9cab-61d983d945ef",
+                  "title": "Alle Benutzer haben Admin-Rechte",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Allen Benutzer der Schnittstelle haben Admin-Rechte",
+                  "mitigation": "Verwendung von RBAC",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 590,
+              "y": 64.00000000000244
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Browser"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 8,
+            "id": "72c16e58-1ade-4170-b11e-bfcaf0735514",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Browser",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 934.9999999999993,
+              "y": 164.00000000000006
+            },
+            "size": {
+              "width": 90,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Frontend"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 9,
+            "id": "f37b6648-0de2-4f61-8592-27b42b5ca596",
+            "data": {
+              "type": "tm.Process",
+              "name": "Frontend",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "6e5086d4-295e-4da3-b1d8-8a306c10bc46",
+                  "title": "Spoofing auf Benutzerdaten im Frontend",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Spoofing Angriff auf Benutzeridentitäten im Frontend.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "033ef0cc-cab9-42f6-8bf9-0cdf6448a9fe",
+                  "title": "Manipulation von Formulardaten",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Manipulation von Formulardaten durch den Benutzer.",
+                  "mitigation": "Validerung der Daten im Frontend",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "112e81e6-35cc-4fa9-a9c3-3a7fc358a298",
+                  "title": "Dos Angriff auf Frontend Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "DoS Angriff durch Überlastung des Webservers.",
+                  "mitigation": "Dos Preventation WAF",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e30196c5-1146-4770-a2ed-88c58a01e5f6",
+            "source": {
+              "cell": "f37b6648-0de2-4f61-8592-27b42b5ca596"
+            },
+            "target": {
+              "cell": "ede635ab-82bd-4408-a0c5-c130f99c5a87"
+            },
+            "vertices": [
+              {
+                "x": 1040,
+                "y": 310
+              },
+              {
+                "x": 1040,
+                "y": 360
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "649deffd-91eb-4dd6-80b2-c432fe7313d7",
+            "source": {
+              "x": 820,
+              "y": 220
+            },
+            "target": {
+              "x": 1020,
+              "y": 100
+            },
+            "vertices": []
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "f6746720-9c5f-4705-b30c-46f15582d363",
+            "source": {
+              "x": 890,
+              "y": 330
+            },
+            "target": {
+              "x": 1260,
+              "y": 340
+            },
+            "vertices": [
+              {
+                "x": 1170,
+                "y": 320
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "d590c0ff-66cd-4261-ab00-cd26025202a2",
+            "source": {
+              "cell": "ede635ab-82bd-4408-a0c5-c130f99c5a87"
+            },
+            "target": {
+              "cell": "5"
+            },
+            "vertices": [
+              {
+                "x": 985,
+                "y": 510
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP-Request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTP",
+              "threats": [
+                {
+                  "id": "4d780e7c-22dd-4fd4-8573-0a78a1c1c270",
+                  "title": "Unverschlüsselter HTTP-Trafficc",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unverschlüsselter HTTP-Traffic kann abgehört werden",
+                  "mitigation": "Verwendung von HTTP's",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "22055ef9-d535-4bb4-85e8-1c986f24e458",
+            "labels": [
+              "HTTP-Request"
+            ],
+            "source": {
+              "cell": "72c16e58-1ade-4170-b11e-bfcaf0735514"
+            },
+            "target": {
+              "cell": "f37b6648-0de2-4f61-8592-27b42b5ca596"
+            },
+            "vertices": [
+              {
+                "x": 930,
+                "y": 120
+              },
+              {
+                "x": 960,
+                "y": 140
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP-Response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTP",
+              "threats": [
+                {
+                  "id": "56890e37-688f-4ef5-ac0d-b83bb0b3a0e9",
+                  "title": "Unverschlüsselter HTTP-Traffic",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Mann in the middle mithören des Traffics",
+                  "mitigation": "Verwendung von HTTPS",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "5d123aca-74fb-4c79-a84d-371b885df29a",
+            "labels": [
+              "HTTP-Response"
+            ],
+            "source": {
+              "cell": "f37b6648-0de2-4f61-8592-27b42b5ca596"
+            },
+            "target": {
+              "cell": "72c16e58-1ade-4170-b11e-bfcaf0735514"
+            },
+            "vertices": [
+              {
+                "x": 920,
+                "y": 190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ef1e3989-679e-4f1d-94e2-099bc040c262",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 0,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "45a00a19-a148-4b18-859d-08189cb3f20e",
+            "source": {
+              "cell": "ede635ab-82bd-4408-a0c5-c130f99c5a87"
+            },
+            "target": {
+              "cell": "f37b6648-0de2-4f61-8592-27b42b5ca596"
+            }
+          }
+        ],
+        "version": "2.0",
+        "title": "Main Request Data Flow",
+        "description": "Main Request Data Flow Description",
+        "diagramType": "STRIDE",
+        "id": 0
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "Security Lead",
+    "threatTop": 16
+  },
+  "version": "2.0"
+}

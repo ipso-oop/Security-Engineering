@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular mit Grid Layout</title>
+    <style>
+        body {
+			font-family: Arial, sans-serif;
+			padding: 20px;
+			background-color: #f4f4f4;
+		}
+
+		form {
+			display: grid;
+			grid-template-columns: 1fr 2fr;  /* Zweispaltiges Layout */
+			grid-gap: 5px;                  /* Abstand zwischen den Spalten */
+			max-width: 600px;                /* Maximale Breite des Formulars */
+			margin: 0 auto;                  /* Zentrierung des Formulars */
+			padding: 20px;                   /* Innenabstand des Formulars */
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+		}
+
+		label {
+			text-align: left;               /* Linksbündige Labels */
+			margin: 10px;
+			padding-right: 10px;
+			grid-column: 1 / 2;              /* Labels in der ersten Spalte */
+			align-self: center;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		textarea {
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			grid-column: 2 / 3;              /* Eingabefelder in der zweiten Spalte */
+		}
+
+		button {
+			grid-column: 1 / 3;              /* Button über beide Spalten */
+			margin: 10px;
+			padding: 10px;
+			background-color: #28a745;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		
+		 .error {
+            color: red;
+            grid-column: 2 / 3;
+			margin: 5px;
+			padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form class="form-container" id="contactForm" action="/" method="POST"">
+        <label for="firstname">Vorname:</label>
+        <input type="text" id="firstname" name="firstname">
+        <span class="error" id="firstnameError"></span>
+
+        <label for="lastname">Nachname:</label>
+        <input type="text" id="lastname" name="lastname">
+        <span class="error" id="lastnameError"></span>
+
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+
+        <label for="phone">Telefonnummer:</label>
+        <input type="text" id="phone" name="phone">
+        <span class="error" id="phoneError"></span>
+
+        <label for="message">Nachricht:</label>
+        <textarea id="message" name="message"></textarea>
+        <span class="error" id="messageError"></span>
+
+        <button type="submit">Absenden</button>
+    </form>
+	
+	
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "formularvalidierung",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "csurf": "^1.2.2",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.1",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0",
+    "path": "^0.12.7",
+    "sanitize-html": "^2.13.1",
+    "xss-clean": "^0.1.4",
+    "xss-filters": "^1.2.7"
+  }
+}
