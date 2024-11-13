@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Vulnerable Demo App</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 40px auto; padding: 20px; }
+    .form-group { margin: 10px 0; }
+    input { width: 100%; padding: 8px; }
+    button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <input type="text" name="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <button type="submit">Login</button>
+  </form>
+</body>
+</html>
