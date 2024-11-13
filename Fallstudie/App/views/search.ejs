@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produktsuche</title>
+</head>
+<body>
+  <h1>Produktsuche</h1>
+  <form action="/search" method="get">
+    <label for="query">Suchbegriff:</label>
+    <input type="text" id="query" name="q" required>
+    <button type="submit">Suchen</button>
+  </form>
+
+  <% if (products) { %>
+    <h2>Suchergebnisse:</h2>
+    <ul>
+      <% products.forEach(product => { %>
+        <li><%= product.name %> - <%= product.description %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>
