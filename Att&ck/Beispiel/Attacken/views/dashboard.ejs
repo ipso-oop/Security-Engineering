@@ -1,0 +1,16 @@
+<h1>Dashboard</h1>
+<ul>
+  <% data.forEach(d => { %>
+     <li>
+      <%= d.content %>
+      <form action="/data/share" method="POST" style="display: inline;">
+        <input type="hidden" name="dataId" value="<%= d.id %>">
+        <button type="submit">Teilen</button>
+      </form>
+    </li>
+  <% }); %>
+</ul>
+<form action="/data/add" method="POST">
+  <input type="text" name="content" placeholder="Neuer Eintrag">
+  <button type="submit">Hinzufügen</button>
+</form>

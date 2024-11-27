@@ -1,0 +1,7 @@
+<form action="/login" method="POST">
+  <h1>Login</h1>
+  <input type="text" name="username" placeholder="Benutzername" required>
+  <input type="password" name="password" placeholder="Passwort" required>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <button type="submit">Einloggen</button>
+</form>
