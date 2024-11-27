@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <h2>Ihre Gesundheitsdaten</h2>
+  <ul>
+    <% healthData.forEach(data => { %>
+      <li>
+        <strong>Kategorie:</strong> <%= data.category %> <br>
+        <strong>Daten:</strong> <%= data.data %> <br>
+        <form action="/health_data/edit" method="POST" style="display:inline;">
+          <input type="hidden" name="id" value="<%= data.id %>">
+          <input type="text" name="data" placeholder="Neuer Wert" required>
+          <input type="text" name="category" placeholder="Neue Kategorie" required>
+          <button type="submit">Bearbeiten</button>
+        </form>
+        <form action="/health_data/delete" method="POST" style="display:inline;">
+          <input type="hidden" name="id" value="<%= data.id %>">
+          <button type="submit">Löschen</button>
+        </form>
+        <form action="/health_data/share" method="POST" style="display:inline;">
+          <input type="hidden" name="healthDataId" value="<%= data.id %>">
+          <button type="submit">Teilen</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+  <h2>Neues Gesundheitsdatum hinzufügen</h2>
+  <form action="/health_data/add" method="POST">
+    <label for="data">Daten:</label>
+    <input type="text" id="data" name="data" required>
+    <br>
+    <label for="category">Kategorie:</label>
+    <input type="text" id="category" name="category" required>
+    <br>
+    <button type="submit">Hinzufügen</button>
+  </form>
+</body>
+</html>
