@@ -7,6 +7,19 @@ const xss = require('xss-clean');
 
 const app = express();
 
+function escapeHtml(value) {
+    if (value === undefined || value === null) {
+        return '';
+    }
+
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 // RASP Tool Helmet mit angepasster CSP-Konfiguration
 // Verwende Helmet, um verschiedene Sicherheits-Header zu aktivieren und so die Sicherheit der App zu erhöhen.
 app.use(
@@ -68,6 +81,13 @@ app.post('/', [
     body('message').trim().escape().notEmpty().withMessage('Nachricht darf nicht leer sein')
 ], (req, res) => {
     const errors = validationResult(req);
+    const safeInput = {
+        firstname: escapeHtml(req.body.firstname),
+        lastname: escapeHtml(req.body.lastname),
+        email: escapeHtml(req.body.email),
+        phone: escapeHtml(req.body.phone),
+        message: escapeHtml(req.body.message)
+    };
 
      if (!errors.isEmpty()) {
         // Wenn es Fehler gibt, sende das Formular mit den Fehlern zurück
@@ -84,23 +104,23 @@ app.post('/', [
 
             <form class="form-container" action="/" method="POST">
                 <label for="firstname">Vorname:</label>
-                <input type="text" id="firstname" name="firstname" value="${req.body.firstname || ''}">
+                <input type="text" id="firstname" name="firstname" value="${safeInput.firstname}">
                 ${errors.array().find(e => e.param === 'firstname') ? `<span class="error">${errors.array().find(e => e.param === 'firstname').msg}</span>` : ''}
 
                 <label for="lastname">Nachname:</label>
-                <input type="text" id="lastname" name="lastname" value="${req.body.lastname || ''}">
+                <input type="text" id="lastname" name="lastname" value="${safeInput.lastname}">
                 ${errors.array().find(e => e.param === 'lastname') ? `<span class="error">${errors.array().find(e => e.param === 'lastname').msg}</span>` : ''}
 
                 <label for="email">E-Mail:</label>
-                <input type="email" id="email" name="email" value="${req.body.email || ''}">
+                <input type="email" id="email" name="email" value="${safeInput.email}">
                 ${errors.array().find(e => e.param === 'email') ? `<span class="error">${errors.array().find(e => e.param === 'email').msg}</span>` : ''}
 
                 <label for="phone">Telefonnummer:</label>
-                <input type="text" id="phone" name="phone" value="${req.body.phone || ''}">
+                <input type="text" id="phone" name="phone" value="${safeInput.phone}">
                 ${errors.array().find(e => e.param === 'phone') ? `<span class="error">${errors.array().find(e => e.param === 'phone').msg}</span>` : ''}
 
                 <label for="message">Nachricht:</label>
-                <textarea id="message" name="message">${req.body.message || ''}</textarea>
+                <textarea id="message" name="message">${safeInput.message}</textarea>
                 ${errors.array().find(e => e.param === 'message') ? `<span class="error">${errors.array().find(e => e.param === 'message').msg}</span>` : ''}
 
                 <button type="submit">Absenden</button>
@@ -117,11 +137,11 @@ app.post('/', [
         <head><title>Formularergebnisse</title></head>
         <body>
             <h1>Formular Eingaben</h1>
-            <p>Vorname: ${req.body.firstname}</p>
-            <p>Nachname: ${req.body.lastname}</p>
-            <p>E-Mail: ${req.body.email}</p>
-            <p>Telefonnummer: ${req.body.phone || 'Keine Telefonnummer angegeben'}</p>
-            <p>Nachricht: ${req.body.message}</p>
+            <p>Vorname: ${safeInput.firstname}</p>
+            <p>Nachname: ${safeInput.lastname}</p>
+            <p>E-Mail: ${safeInput.email}</p>
+            <p>Telefonnummer: ${safeInput.phone || 'Keine Telefonnummer angegeben'}</p>
+            <p>Nachricht: ${safeInput.message}</p>
             <a href="/">Zurück zum Formular</a>
         </body>
         </html>
